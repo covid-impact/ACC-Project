@@ -6,3 +6,5 @@ https://uwin365-my.sharepoint.com/personal/dhillo91_uwindsor_ca/_layouts/15/oned
   <li>Go to <strong>labFour.java --> createIndex() --> webSites </strong> variable to adjust the file paths. If the file above is placed in your downloads folder, the only thing you need to change is the <i>PCNAME</i> constant. Since my PC is called "Owner", that is what the variable is set to. Change it to whatever your PC is named as its important for the directory path. If your file is not in the downloads directory, you will have to manually enter the directory path.</li>
 <li>Run as a java application and search your terms. It will display all files that contained the search terms. It does not add word frequency to determine page ranking.</li>
 </ol>
+
+**Line 30 in the labFour.java file needs to be changed. I currently set the for loop to only run 7 times but you can change 7 to sites.length so it cycles through ALL text documents**
