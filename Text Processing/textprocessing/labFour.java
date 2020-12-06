@@ -13,8 +13,8 @@ import java.io.InputStreamReader;
 
 
 class InvertedIndex {
-    Map<Integer,String> sources;
-    HashMap<String, HashSet<Integer>> index;
+    Map<Integer,String> sources; 	//all the text files being loaded in with string as file name and integer as index position
+    HashMap<String, HashSet<Integer>> index; //store the terms/words from each text file and store an doc position for that term
 
     InvertedIndex() {
         sources = new HashMap<Integer,String>();
@@ -27,11 +27,10 @@ class InvertedIndex {
 		File webSites = new File("C:\\Users\\" + PCNAME + "\\Downloads\\cleanedFull"); //must include directory path to text files
 		File[] sites = webSites.listFiles();
        	
-		for(int i = 0; i < 20; i++) {
+		for(int i = 0; i < 7; i++) {
 			try(BufferedReader file = new BufferedReader(new FileReader(sites[i])))
 	            {
 	                String line;
-	                //sources.put(i, fileToString(sites[i])); 	//test line, should delete this line 
 	                sources.put(i, sites[i].getName().trim()); 	//add index position and file name to sources HashMap
 	                
 	                while((line = file.readLine()) != null) {   //read file until you cannot
@@ -41,7 +40,7 @@ class InvertedIndex {
 	                    	term = term.toLowerCase(); 	    	//convert to lowercase
 	                        
 	                    	if (!index.containsKey(term))  					//if HashMap index does not contain any word found in the tokenize terms array
-	                            index.put(term, new HashSet<Integer>());	//add
+	                            index.put(term, new HashSet<Integer>());	//add the newly founded term/word and the file index 
 	                        
 	                    	index.get(term).add(i);
 	                    }
@@ -86,8 +85,10 @@ class InvertedIndex {
 	        
 	        System.out.println("Result located in: ");
 	        for(int index : result){
-	            System.out.println("\t" + sources.get(index));
+	        	System.out.println("\t" + sources.get(index));
 	        }
+	        System.out.println(sources);
+	        System.out.println(index);
     	}
 }
 public class labFour {
