@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="/Lab 7 - Memory Management"/>
 	<classpathentry kind="lib" path="C:/Users/admin/OneDrive/Desktop/lucene-analyzers-3.5.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/admin/OneDrive/Desktop/lucene-core-3.5.0.jar"/>
+	<classpathentry kind="lib" path="/Lab 5 - Algorithm Design"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

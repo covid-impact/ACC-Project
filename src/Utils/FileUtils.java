@@ -1,10 +1,13 @@
 package Utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Scanner;
 
 public class FileUtils {
 	
@@ -68,5 +71,16 @@ public class FileUtils {
 			System.out.println(e);
 		}
 		
+	}
+	
+	public List<String> getFromFile(String file) throws FileNotFoundException {
+		Scanner scan = new Scanner(new File(file));
+		List<String> words = new ArrayList<String>();
+		while(scan.hasNextLine()){
+	    	String line = scan.nextLine();
+	        
+	    	words.add(line);
+	    }
+		return words;
 	}
 }
