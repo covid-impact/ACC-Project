@@ -3,17 +3,18 @@
  */
 package TextProcessing;
 
-import java.io.FileWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import Utils.FileUtils;
 import memoryManagement.In;
 import memoryManagement.IndexMinPQ;
 
@@ -44,37 +45,25 @@ public class ToText {
         return merger;
     }
 	
-	public static void readAndConvert(String url) throws IOException {
+	public static void readAndConvert(String url, int i, File dir) throws IOException {
 		try {
 			Document document = Jsoup.connect(url).get();
-			String fileText = document.title();
-			fileText = fileText + "\n" + document.text();
-			PrintWriter writer = new PrintWriter("./all/" + document.title().replaceAll("[^a-zA-Z0-9\\.\\-]", "_") + ".txt");
-			System.out.println(document.title().replaceAll("[^a-zA-Z0-9\\.\\-]", "_") + " saved");
+			
+			String fileText = url;
+			fileText += "\n" + document.title();
+			fileText += "\n" + document.text();
+			
+			PrintWriter writer = new PrintWriter(dir.getAbsolutePath() + "/" + i + ".txt");
+			System.out.println(document.title().replaceAll("[^a-zA-Z0-9\\.\\-]", "_") + " saved as " + "./" + dir.getAbsolutePath() + "/" + i + ".txt");
+			
 			writer.println(fileText);
 			writer.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-	
-	public static final String dir = "./full-text";
-	
-	private static void saveToFile(String filename, List<String> list) {
-		try {
-			FileWriter writer = new FileWriter(filename); 
-			for(String str: list) {
-			  writer.write(str.trim() + System.lineSeparator());
-			}
-			writer.close();
-		} catch (IOException e) {
-			System.out.println(e);
-		}
-		
-	}
 
-	
-	public static ArrayList<String> getLinks() {
+	public static ArrayList<String> getLinks() throws FileNotFoundException {
 		String[] fnames = {"amazon.txt", "google.txt", "imdb.txt", "news.txt", "wiki-en.txt"};
         int N = fnames.length; 
         In[] streams = new In[N]; 
@@ -82,18 +71,29 @@ public class ToText {
             streams[i] = new In(fnames[i]);
         
         ArrayList<String> merger = merge(streams);
-        saveToFile("all.txt", merger);
+        
+        FileUtils ft = new FileUtils();
+        
+        ft.writeToFile("unique_links.txt", merger);
+//        saveToFile("all.txt", merger);
         
         return merger;
 	}
 	
 	public static void main (String[] args) throws IOException {
 		ArrayList<String> alls = getLinks();
+		
+		// to get only unique links
 		Set<String> all = new HashSet<>(alls);
 		
-		
-		for (String name : all) {
-			readAndConvert(name);
+		File dir = new File("./all-Text-Files");
+		FileUtils ft = new FileUtils(); 
+		if (ft.checkFolderExistsOrMake(dir)) {
+			int i = 1;
+			for (String name : all) {
+				readAndConvert(name, i, dir);
+				i += 1;
+			}
 		}
 	}
 
