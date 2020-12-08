@@ -7,9 +7,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/admin/Downloads/jsoup-1.13.1.jar"/>
-	<classpathentry kind="lib" path="/Lab 7 - Memory Management"/>
 	<classpathentry kind="lib" path="C:/Users/admin/OneDrive/Desktop/lucene-analyzers-3.5.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/admin/OneDrive/Desktop/lucene-core-3.5.0.jar"/>
-	<classpathentry kind="lib" path="/Lab 5 - Algorithm Design"/>
+	<classpathentry kind="lib" path="C:/Users/admin/OneDrive/Desktop/lab-6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/OneDrive/Desktop/lab-7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

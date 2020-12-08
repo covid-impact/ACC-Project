@@ -1,7 +1,5 @@
 package InvertedIndex;
 
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,14 +8,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import Ranking.RankingWebpages;
-import TextProcessing.Suggestions;
 
 import java.util.Map.Entry;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -145,9 +140,11 @@ public class InvertedIndex {
 	        
 	        System.out.println("Results for " + search);
 
-	        System.out.println("Ranked in decending order of frequency(no. or occurence):");
+	        System.out.println("Ranked in descending order of frequency(no. or occurence):");
+	        
+	        System.out.println("Total Results: " + result.size());
 	        System.out.print("-".repeat(repeatNumber ) + "\n");
-			System.out.format(format , "Index", "ID", "Tile", "Frequnecy");
+			System.out.format(format , "Index", "ID", "Frequnecy", "Title");
 	        System.out.print("-".repeat(repeatNumber ) + "\n");
 //	        for(int index : result){
 //	        	System.out.println("\t" + sources.get(index));
@@ -159,12 +156,15 @@ public class InvertedIndex {
 	        List<String> files = new ArrayList<String>();
 	        List<Entry<Integer,Integer>> rankedResult = ranking.sortByMultiWords(terms);
 	        int index = 1;
+	        HashSet<String> hs = new HashSet<String>();
 	        for (Entry<Integer, Integer> el : rankedResult) {
 	        	String filename = sources.get(el.getKey());
 	        	final List<String> lines = Files.readAllLines(Paths.get("./all-Text-Files/" + filename), StandardCharsets.ISO_8859_1);
-	        	if (el.getValue() > 10) {
-		        	System.out.format(format, index, filename, lines.get(1).replaceFirst("(.{10}).+(.{10})", "$1...$2"), el.getValue());
+	        	if (el.getValue() > 10 && !hs.contains(lines.get(1))) {
+		        	System.out.format(format, index, filename, el.getValue(), lines.get(1));
+//		        	lines.get(1).replaceFirst("(.{10}).+(.{10})", "$1...$2")
 		        	files.add(lines.get(0));
+		        	hs.add(lines.get(1));
 	        	}
 //	        	System.out.println("sourceIndex: " + el.getKey() + " " +sources.get(el.getKey()) + " frequency: "+ el.getValue());
 	        	index += 1;
