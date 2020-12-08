@@ -64,19 +64,19 @@ public class Suggestions {
 		
 //		makeDictioanry();
 		
-		StringUtils st = new StringUtils();
-		
-		String input = "play";
-		List<String> sugg = suggestions(st.Stem(input, "English"));
-		
-		for (String word : sugg) {
-			if (sugg.size() > 1) {
-				System.out.print(word + " | " );
-			} else  {
-
-				System.out.println(word);
-			}
-		}
+//		StringUtils st = new StringUtils();
+//		
+//		String input = "play";
+//		List<String> sugg = suggestions(st.Stem(input, "English"));
+//		
+//		for (String word : sugg) {
+//			if (sugg.size() > 1) {
+//				System.out.print(word + " | " );
+//			} else  {
+//
+//				System.out.println(word);
+//			}
+//		}
 		
 	}
 }
