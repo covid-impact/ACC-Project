@@ -3,7 +3,7 @@
 <h3>Setting up the project</h3>
 
 <ol>
-<li>Download the project as a zip file and then extract.</li>
+<li>Download the project as a zip file and then extract</li>
 <li>Open the <strong>ACC-Project-master</strong> folder and right click both zip files <strong>"all-Text-Files"</strong> and <strong>"cleaned-text"</strong> and click <strong>"Extract Here"</strong></li>
 <li>Visit this link here to install JDK 14 which is required:</li>
 https://www.oracle.com/ca-en/java/technologies/javase/jdk14-archive-downloads.html
