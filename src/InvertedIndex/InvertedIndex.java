@@ -165,9 +165,10 @@ public class InvertedIndex {
 //		        	lines.get(1).replaceFirst("(.{10}).+(.{10})", "$1...$2")
 		        	files.add(lines.get(0));
 		        	hs.add(lines.get(1));
+				index += 1;
 	        	}
 //	        	System.out.println("sourceIndex: " + el.getKey() + " " +sources.get(el.getKey()) + " frequency: "+ el.getValue());
-	        	index += 1;
+	        	
 	        }
 	        System.out.print("-".repeat(repeatNumber ) + "\n");
 	        //System.out.println(ranking.frequency);
