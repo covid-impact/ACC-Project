@@ -1,6 +1,6 @@
 # ACC-Project
 
-<h3>Setting up the project for best compatibility</h3>
+<h3>Project Setup for Best Compatibility</h3>
 
 **Please note you should be able to run this application by only replacing the JAR files in the build path but if not working, follow the full-step process below**
 
