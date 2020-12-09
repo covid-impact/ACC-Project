@@ -1,3 +1,7 @@
+/**
+ * @author Prabhjyot Singh Dhillon
+ */
+
 package Crawler;
 
 import java.io.FileWriter;
@@ -10,15 +14,30 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
+/**
+ * Class to crawl the webpages based on seed URL until a stopping limit.
+ *
+ */
 public class Crawler {
 	private HashSet<String> visitedURLs;
+	/**
+	 *  Regex to verify link
+	 */
 	public static final Pattern LINK_REGEX = 
 			Pattern.compile("[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)");
+	/**
+	 *  stopping limit of crawler
+	 */
 	public int MAX = 100;
 	private String filename = "default.txt";
 	private String regex = "";
 	
+	/**
+	 * Constructor, sets the stopping limit, file to save the links in and regex for validating the URLs
+	 * @param MAX_LINKS the stopping for the cralwer
+	 * @param file name of the file to save links in
+	 * @param regexSite validation of the URLs
+	 */
 	public Crawler (int MAX_LINKS, String file, String regexSite) {
 		MAX = MAX_LINKS;
 		filename = file;
@@ -26,6 +45,12 @@ public class Crawler {
 		visitedURLs = new HashSet<String>();
 	}
 	
+	/**
+	 * gets the link from the given url and returns a HashSet of unique links
+	 * @param url link to extract other links from
+	 * @return a HashSet of unique links found
+	 * @throws IOException exception in case of getting the data from URL
+	 */
     public HashSet<String> getLinks (String url) throws IOException {
         HashSet<String> uniqueHrefs = new HashSet<String>();
     	try {
@@ -46,6 +71,11 @@ public class Crawler {
         return uniqueHrefs;
     }
     
+    /**
+     * runs a recursive crawler based on the seed URL
+     * @param url seed url for the crawler
+     * @throws IOException exception in case of getting the data from URL
+     */
     public void crawler(String url) throws IOException {
     	visitedURLs.add(url);
     	HashSet<String> links = getLinks(url);
@@ -64,6 +94,9 @@ public class Crawler {
     	}
     }
     
+    /**
+     * Writes the HashSet of links to the specified file
+     */
     public void writeToFile() {
       FileWriter writer;
       try {
@@ -81,6 +114,11 @@ public class Crawler {
       }
   } 
     
+    /**
+     * starts the crawling by giving a seed URL
+     * @param args arguments form terminal if any
+     * @throws IOException exception in case of URL
+     */
     public static void main(String[] args) throws IOException {
 
 //    	Crawler cgoogle = new Crawler(1000, "google.txt", "https?:\\/\\/(([^\\/]*\\.)|)google\\.com(|\\/.*)");

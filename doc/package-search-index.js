@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"Crawler"},{"l":"InvertedIndex"},{"l":"Ranking"},{"l":"TextProcessing"},{"l":"UI"},{"l":"Utils"}];updateSearchResults();

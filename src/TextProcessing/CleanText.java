@@ -1,3 +1,7 @@
+/**
+ * @author Prabhjyot Singh Dhillon
+ */
+
 package TextProcessing;
 
 import java.io.File;
@@ -9,8 +13,17 @@ import java.util.Scanner;
 import Utils.FileUtils;
 import Utils.StringUtils;
 
+/**
+ * Takes a text file that we got visiting the links and processes it for indexing 
+ *
+ */
 public class CleanText {
 	
+	/**
+	 * Takes the text files generated from visiting links and processes them by removing stop words and stemming the words 
+	 * @param args arguments from terminal if any
+	 * @throws IOException exception in case of files
+	 */
 	public static void main (String[] args) throws IOException {
 
 		File dir = new File("./all-Text-Files");

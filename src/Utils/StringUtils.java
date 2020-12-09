@@ -1,3 +1,7 @@
+/**
+ * @author Prabhjyot Singh Dhillon
+ */
+
 package Utils;
 
 import java.io.File;
@@ -15,11 +19,18 @@ import org.apache.lucene.analysis.snowball.SnowballAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.TermAttribute;
 import org.apache.lucene.util.Version;
 
+/**
+ * utilities for working with text
+ */
 public class StringUtils {
 	
 	private static List <String> stop_words = new ArrayList<String>();
 	private static final String stop_words_file = "stop_words.txt";
 	
+	/**
+	 * constructor to initialize the stop words
+	 * @throws FileNotFoundException exception if file with stop words not found
+	 */
 	public StringUtils () throws FileNotFoundException {
 		try {
 			Scanner sw = new Scanner(new File(stop_words_file));
@@ -36,6 +47,11 @@ public class StringUtils {
 		
 	}
 	
+	/**
+	 * removes stop words from given text
+	 * @param text text to remove stop words from
+	 * @return stop words free text
+	 */
 	public String removeStopWords(String text) {
 		String[] word_array = text.split(" ");
 		List <String> word_list = new ArrayList<String>(Arrays.asList(word_array));
@@ -46,6 +62,12 @@ public class StringUtils {
 		return cleanedText;
 	}
 	
+	/**
+	 * stems the words in a text
+	 * @param text text to stem words in
+	 * @param language stemming language
+	 * @return stemmed text
+	 */
 	public static String Stem(String text, String language){
         StringBuffer result = new StringBuffer();
         if (text!=null && text.trim().length()>0){

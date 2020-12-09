@@ -1,3 +1,7 @@
+/**
+ * @author Prabhjyot Singh Dhillom
+ */
+
 package Utils;
 
 import java.io.File;
@@ -9,6 +13,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * utilities for working with files
+ *
+ */
 public class FileUtils {
 	
 	/**
@@ -30,6 +38,11 @@ public class FileUtils {
 		}
 	}
 	
+	/**
+	 * gets list of all files from given directory
+	 * @param dir directory to get files from
+	 * @return a list of files
+	 */
 	public String[] getFileNamesFromDir(File dir) {
 		File[] allFiles = dir.listFiles();
 		System.out.println("Total Files: " + allFiles.length);
@@ -42,7 +55,11 @@ public class FileUtils {
 		return allFileNames;
 	}
 
-	
+	/**
+	 * writes a HashSet to specified file
+	 * @param filename file to save the HashSet in
+	 * @param URLS HashSet to be saved
+	 */
 	public void writeToFile(String filename, HashSet<String> URLS) {
 	      FileWriter writer;
 	      try {
@@ -60,6 +77,11 @@ public class FileUtils {
 	      }
 	  }
 	
+	/**
+	 * writes a List to specified file
+	 * @param filename file to save the List in
+	 * @param list List to be saved
+	 */
 	public void writeToFile(String filename, List<String> list) {
 		try {
 			FileWriter writer = new FileWriter(filename); 
@@ -73,6 +95,12 @@ public class FileUtils {
 		
 	}
 	
+	/**
+	 * gets the words from a file
+	 * @param file file to get words in
+	 * @return list of words
+	 * @throws FileNotFoundException exception if file not present
+	 */
 	public List<String> getFromFile(String file) throws FileNotFoundException {
 		Scanner scan = new Scanner(new File(file));
 		List<String> words = new ArrayList<String>();

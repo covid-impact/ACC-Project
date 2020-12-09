@@ -1,5 +1,5 @@
 /**
- * 
+ * @author Prabhjyot Singh Dhillon
  */
 package TextProcessing;
 
@@ -20,11 +20,15 @@ import memoryManagement.IndexMinPQ;
 
 
 /**
- * @author Prabhjyot Singh Dhillon
- *
+ * Converts the saved links to text files
  */
 public class ToText {
 	
+	/**
+	 * merges the different links into one file using multiway merge
+	 * @param streams different file streams to merge
+	 * @return a list of all links
+	 */
 	private static ArrayList<String> merge(In[] streams) { 
 		ArrayList<String> merger = new ArrayList<String>();
 		
@@ -45,6 +49,13 @@ public class ToText {
         return merger;
     }
 	
+	/**
+	 * gets the text from the given URL. Saves it text file with first line as the link, second the title and finally the whole text
+	 * @param url link to get the data from
+	 * @param i id for the file
+	 * @param dir directory to save the files in
+	 * @throws IOException exception if URL can't be fetched or directory related error
+	 */
 	public static void readAndConvert(String url, int i, File dir) throws IOException {
 		try {
 			Document document = Jsoup.connect(url).get();
@@ -62,7 +73,12 @@ public class ToText {
 			System.out.println(e);
 		}
 	}
-
+	
+	/**
+	 * gets all the files with links and merges them to one 
+	 * @return a list of all links
+	 * @throws FileNotFoundException exception if link files are not found
+	 */
 	public static ArrayList<String> getLinks() throws FileNotFoundException {
 		String[] fnames = {"amazon.txt", "google.txt", "imdb.txt", "news.txt", "wiki-en.txt"};
         int N = fnames.length; 
@@ -80,6 +96,11 @@ public class ToText {
         return merger;
 	}
 	
+	/**
+	 * gets all the links, converts them to text and saves in a file 
+	 * @param args arguments from termianl if any
+	 * @throws IOException excpetion in case of directory error
+	 */
 	public static void main (String[] args) throws IOException {
 		ArrayList<String> alls = getLinks();
 		

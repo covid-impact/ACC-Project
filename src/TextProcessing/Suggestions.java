@@ -1,3 +1,7 @@
+/**
+ * @author Harry Bhagat
+ */
+
 package TextProcessing;
 
 import java.io.File;
@@ -12,8 +16,15 @@ import Utils.FileUtils;
 import Utils.StringUtils;
 import algorithmDesign.Sequences;
 
+/**
+ * suggests user correct spelling
+ */
 public class Suggestions {
 	
+	/**
+	 * Makes a dictionary based on the text files generated and saves it in a text file
+	 * @throws FileNotFoundException
+	 */
 	private static void makeDictioanry( ) throws FileNotFoundException {
 		File dir = new File("all-Text-Files");
 		List<String> words = new ArrayList<String>();
@@ -44,6 +55,12 @@ public class Suggestions {
 		ft.writeToFile("dictionary.txt", set);
 	}
 	
+	/**
+	 * suggests keywords to user based on the search query
+	 * @param input user search query
+	 * @return list of correct spellings found
+	 * @throws FileNotFoundException exception if dictionary not found
+	 */
 	public List<String> suggestions(String input) throws FileNotFoundException {
 		FileUtils ft = new FileUtils();
 		Sequences sq = new Sequences();
@@ -60,7 +77,7 @@ public class Suggestions {
 		return suggestions;
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException {
+//	public static void main(String[] args) throws FileNotFoundException {
 		
 //		makeDictioanry();
 		
@@ -78,5 +95,5 @@ public class Suggestions {
 //			}
 //		}
 		
-	}
+//	}
 }

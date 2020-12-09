@@ -1,3 +1,7 @@
+/**
+ * @author Sahil Verma
+ */
+
 package InvertedIndex;
 
 import java.io.BufferedReader;
@@ -17,7 +21,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-
+/**
+ * class to reverse index the files for search
+ *
+ */
 public class InvertedIndex {
     Map<Integer,String> sources; 	//all the text files being loaded in with string as file name and integer as index position
     HashMap<String, HashSet<Integer>> index; //store the terms/words from each text file and store an doc position for that term
@@ -25,12 +32,19 @@ public class InvertedIndex {
 	private int repeatNumber = 80;
 	private String format = "%-10s%-10s%-30s%-30s\n";
     
+	/**
+	 * Initializes indexes
+	 */
     public InvertedIndex() {
         sources = new HashMap<Integer,String>();
         index = new HashMap<String, HashSet<Integer>>();
         ranking = new RankingWebpages();
     }
-
+    
+    /**
+     * indexes the processed text files from directory
+     * @throws IOException exception related to directory errors
+     */
     public void createIndex() throws IOException{
         
 		File webSites = new File("./cleaned-text"); //must include directory path to text files
@@ -62,6 +76,10 @@ public class InvertedIndex {
 		this.createFrequency();
     	}
     
+    /**
+     * creates frequency for indexed files and words
+     * @throws IOException exception in case of file
+     */
     public void createFrequency() throws IOException{
         
 		File webSites = new File("./cleaned-text"); //must include directory path to text files
@@ -103,6 +121,12 @@ public class InvertedIndex {
 	        }
     	}
     
+    /**
+     * gets the text from specified file
+     * @param textFileToString file to get text from
+     * @return text from the file
+     * @throws IOException exception related to file
+     */
     public String fileToString(File textFileToString) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(textFileToString));
 		StringBuilder sb = new StringBuilder();    
@@ -121,6 +145,12 @@ public class InvertedIndex {
     	return finalString;
     }
     
+    /**
+     * to search the index based on user query
+     * @param search string to search 
+     * @return a list of links related to user query
+     * @throws IOException exception in case of handling text files
+     */
     public List<String> find(String search) throws IOException {
         String[] terms = search.split("\\W+"); //java regex for non-word characters
         //only handle first term for now
