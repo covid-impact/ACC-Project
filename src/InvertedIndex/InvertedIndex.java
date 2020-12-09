@@ -32,12 +32,11 @@ public class InvertedIndex {
     }
 
     public void createIndex() throws IOException{
-        final String PCNAME = "yahagi"; //enter your pc-name here
         
 		File webSites = new File("./cleaned-text"); //must include directory path to text files
 		File[] sites = webSites.listFiles();
        	
-		for(int i = 0; i < 1000; i++) {
+		for(int i = 0; i < sites.length; i++) {
 			try(BufferedReader file = new BufferedReader(new FileReader(sites[i])))
 	            {
 	                String line;
@@ -64,12 +63,11 @@ public class InvertedIndex {
     	}
     
     public void createFrequency() throws IOException{
-        final String PCNAME = "yahagi"; //enter your pc-name here
         
 		File webSites = new File("./cleaned-text"); //must include directory path to text files
 		File[] sites = webSites.listFiles();
        	
-		for(int i = 0; i < 1000; i++) {
+		for(int i = 0; i < sites.length; i++) {
 			try(BufferedReader file = new BufferedReader(new FileReader(sites[i])))
 	            {
 	                String line;
